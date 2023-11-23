@@ -45,3 +45,79 @@ body {
   }
 }
 /* End global rules */
+/* Start Header */
+.header {
+  padding: 20px;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* icon nav*/
+.header .links .icon {
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.header .icon span {
+  background-color: black;
+  margin-bottom: 5px;
+  height: 3px;
+}
+.icon span:first-child,
+.icon span:last-child {
+  width: 100%;
+}
+.icon span:nth-child(2) {
+  width: 75%;
+  transition: 0.3s;
+}
+.header .links:hover span:nth-child(2) {
+  width: 100%;
+}
+/* end icon nav */
+.links ul {
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  min-width: 200px;
+  background-color: #ddd;
+  top: calc(100% + 15px);
+  border-radius: 4px;
+  display: none;
+}
+.header .links {
+  position: relative;
+}
+.links ul ::after {
+  content: "";
+  border: solid transparent 10px;
+  border-bottom-color: #ddd;
+  position: absolute;
+  top: -20px;
+  right: 5px;
+}
+.links ul li a {
+  display: block;
+  padding: 20px 30px;
+  text-decoration: none;
+  color: #798389;
+  transition: 0.3s;
+}
+.links ul li:not(:last-child) {
+  border-bottom: solid black 2px;
+}
+.links ul li a:hover {
+  padding-left: 10px;
+  color: black;
+  font-weight: bold;
+}
+.header .links:hover ul {
+  display: block;
+}
+/* End Header */
