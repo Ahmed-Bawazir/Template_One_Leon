@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        direction: rtl;
+        width: 500px;
+        height: 400px;
+        margin: auto;
+      }
+      td,
+      th {
+        padding: 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border: solid 2px black;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let pro = new Promise((resolve, reject) => {
+        let api = new XMLHttpRequest();
+        api.open("GET", "date.json");
+        api.send();
+        api.onload = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            resolve(JSON.parse(this.responseText));
+          } else {
+            reject("ERROR : somethig wrong");
+          }
+        };
+      });
+
+      pro.then((e) => {
+        let content = document.createElement("div");
+        content.className = "container";
+        content.innerHTML = `
+  <div class="container"> 
+  <table>
+      <thead>
+        <tr>
+          <th>الفرض/الوقت</th>
+          <th>الأذان</th>
+          <th>الأقامة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>الفجر</th>
+          <td>${e.fjr.a}</td>
+          <td>${e.fjr.b}</td>
+        </tr>
+        <tr>
+          <th>الشروق</th>
+          <td>${e.sun.a}</td>
+          <td>${e.sun.b}</td>
+        </tr>
+        <tr>
+          <th>الظهر</th>
+          <td>${e.dhr.a}</td>
+          <td>${e.dhr.b}</td>
+        </tr>
+        <tr>
+          <th>العصر</th>
+          <td>${e.asr.a}</td>
+          <td>${e.asr.b}</td>
+        </tr>
+        <tr>
+          <th>المغرب</th>
+          <td>${e.mgrb.a}</td>
+          <td>${e.mgrb.b}</td>
+        </tr>
+        <tr>
+          <th>العشاء</th>
+          <td>${e.asha.a}</td>
+          <td>${e.asha.b}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  </div>
+  `;
+        document.body.appendChild(content);
+      });
+    </script>
+  </body>
+</html>
